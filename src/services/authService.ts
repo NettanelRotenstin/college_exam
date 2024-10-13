@@ -2,15 +2,20 @@ import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
 import createPersonDTO from '../DTOs/CreatePersonDTO';
 import classModel from '../models/classModel';
+import studentModel from '../models/studentModel'
+import IcreateStudents from '../types/interfaces/IcreateStudent';
+import IcreateTeacherClass from '../types/interfaces/IcreateTaecherClass';
 
 
 export const loginServise = async (person: createPersonDTO) => {
     try {
-        const dbUser = await classModel.findOne({ name: person.user_name });
-
+        let dbUser = await classModel.findOne({ name: person.user_name });
+        if (!dbUser){
+            dbUser = await studentModel.findOne({name: person.user_name})
+        }
         if (!dbUser) throw new Error("user not found");
 
-        const userPass: string = user.password || " "
+        const userPass: string = person.password || " "
 
         const dbUserPass: string = dbUser.password || " "
 
