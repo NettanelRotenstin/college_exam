@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addGrade, avarageOfStudentsGrade, createTeacher, gradesOfAllStudents, updateGrade } from "../controllers/teacherController";
+import { addGrade, createTeacher, gradesOfAllStudents, updateGrade } from "../controllers/teacherController";
 import {onlyTeachers} from '../middleWares/authMw'
 
 const teacherRouter = require("express").Router();
@@ -95,7 +95,7 @@ teacherRouter.get("/getstudentsandgrades",onlyTeachers, gradesOfAllStudents)
  *         description: Internal server error
  */
 
-teacherRouter.patch("/updategrade/:studentID/:gradetitle",onlyTeachers, updateGrade)
+teacherRouter.patch("/updategrade/:studentID",onlyTeachers, updateGrade)
 
 /**
  * @swagger
@@ -118,6 +118,6 @@ teacherRouter.patch("/updategrade/:studentID/:gradetitle",onlyTeachers, updateGr
  *         description: Internal server error
  */
 
-teacherRouter.get("/avarage",onlyTeachers, avarageOfStudentsGrade)
+//teacherRouter.get("/avarage",onlyTeachers, avarageOfStudentsGrade)
 
 export default teacherRouter

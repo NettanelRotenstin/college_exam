@@ -48,43 +48,45 @@ export const addGradeService = async (grade: IGrade, studentId: string, teacherI
 }
 
 
-export const gradesOfAllStudentsService = async (nameOfClass: string) => {
+export const gradesOfAllStudentsService = async (classID: string) => {
   try {
-     const teacherClass = await classModel.findOne({})
+    const teacherClass = await classModel.findById(classID,).populate('students')
+    if (teacherClass) {
+      return teacherClass
+    }
+    throw new Error('cant find this class')
   } catch (error) {
 
-    throw new Error('cant return the')
+    throw new Error('cant return')
 
   }
 }
 
-export const updateGradeService = async (nameOfClass: string, grade: IGrade, studentID: string) => {
+export const updateGradeService = async (grade: IGrade, studentID: string) => {
   try {
-    const teacher = await classModel.findOne({ nameOfClass, students: { _id: studentID } })
+    const { title, score, classID } = grade
+
+    const teacher = await studentModel.findById(studentID)
 
     if (!teacher) throw new Error('tou arent his teacher')
 
-    await studentModel.aggregate([{$set:{$match:{_id:studentID}}}])
-} catch (error) {
+    const student = await
 
-  throw new Error('cant return the')
-
-}
-}
-
-export const avarageGradesService = async (nameOfClass: string, teacherID: string): Promise<number> => {
-  try {
-    const teacher = await classModel.find({ nameOfClass, _id: teacherID }, { students: 1 })
-
-    if (!teacher) throw new Error('you arent teacher of this class!')
-
-    const grades = await gradesOfAllStudentsService(nameOfClass)
-
-    return grades / grades.length
-
+      await studentModel.updateOne({grades :  {title}} ,
+        { $set: { score }})
   } catch (error) {
 
     throw new Error('cant return the')
 
   }
 }
+
+// export const avarageGradesService = async (teacherID: string): Promise<number> => {
+//   try {
+   
+//   } catch (error) {
+
+//     throw new Error('cant return the')
+
+//   }
+// }

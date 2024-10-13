@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import IGrade from "../types/interfaces/Grade";
 
 const gradeSchema = new Schema<IGrade>({
@@ -8,6 +8,9 @@ const gradeSchema = new Schema<IGrade>({
     },
     score: {
         type: Number
+    },
+    classID:{
+        type:mongoose.Schema.Types.ObjectId
     }
 });
 

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.avarageOfStudentsGrade = exports.updateGrade = exports.gradesOfAllStudents = exports.addGrade = exports.createTeacher = void 0;
+exports.updateGrade = exports.gradesOfAllStudents = exports.addGrade = exports.createTeacher = void 0;
 const teacherService_1 = require("../services/teacherService");
 const createTeacher = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -41,7 +41,7 @@ const addGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.addGrade = addGrade;
 const gradesOfAllStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allGrades = yield (0, teacherService_1.gradesOfAllStudentsService)(req.cookies.nameOfClass);
+        const allGrades = yield (0, teacherService_1.gradesOfAllStudentsService)(req.cookies.id);
         res.status(200).json({
             allGrades
         });
@@ -55,7 +55,7 @@ const gradesOfAllStudents = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.gradesOfAllStudents = gradesOfAllStudents;
 const updateGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, teacherService_1.updateGradeService)(req.cookies.nameOfClass, req.body, req.params.studentID);
+        yield (0, teacherService_1.updateGradeService)(req.body, req.params.studentID);
         res.status(200).json({
             msg: 'success changed!'
         });
@@ -67,15 +67,13 @@ const updateGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.updateGrade = updateGrade;
-const avarageOfStudentsGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const avarage = yield (0, teacherService_1.avarageGradesService)(req.cookies.nameOfClass, req.cookies.id);
-        res.status(200).json({
-            avarage
-        });
-    }
-    catch (error) {
-        res.status(404).json({ msg: 'request faild' });
-    }
-});
-exports.avarageOfStudentsGrade = avarageOfStudentsGrade;
+// export const avarageOfStudentsGrade = async (req: Request, res: Response,): Promise<void> => {
+//     try {
+//         const result = await gradesOfAllStudentsService(req.cookies.id)
+//         res.status(200).json({
+//             result
+//         })
+//     } catch (error) {
+//         res.status(404).json({ msg: 'request faild' })
+//     }
+// };

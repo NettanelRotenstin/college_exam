@@ -86,7 +86,7 @@ teacherRouter.get("/getstudentsandgrades", authMw_1.onlyTeachers, teacherControl
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.patch("/updategrade/:studentID/:gradetitle", authMw_1.onlyTeachers, teacherController_1.updateGrade);
+teacherRouter.patch("/updategrade/:studentID", authMw_1.onlyTeachers, teacherController_1.updateGrade);
 /**
  * @swagger
  * /avarage:
@@ -107,5 +107,5 @@ teacherRouter.patch("/updategrade/:studentID/:gradetitle", authMw_1.onlyTeachers
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.get("/avarage", authMw_1.onlyTeachers, teacherController_1.avarageOfStudentsGrade);
+//teacherRouter.get("/avarage",onlyTeachers, avarageOfStudentsGrade)
 exports.default = teacherRouter;

@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGradeService = exports.createStudentService = void 0;
+exports.getClassId = exports.getGradeService = exports.createStudentService = void 0;
+const classModel_1 = __importDefault(require("../models/classModel"));
 const studentModel_1 = __importDefault(require("../models/studentModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createStudentService = (student) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,3 +40,7 @@ const getGradeService = (studentID, titleLooking) => __awaiter(void 0, void 0, v
     }
 });
 exports.getGradeService = getGradeService;
+const getClassId = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield classModel_1.default.findById(id);
+});
+exports.getClassId = getClassId;

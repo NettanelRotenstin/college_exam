@@ -1,3 +1,4 @@
+import classModel from "../models/classModel";
 import studentModel from "../models/studentModel";
 import IcreateStudents from "../types/interfaces/IcreateStudent";
 import bcrypt from 'bcrypt'
@@ -31,5 +32,9 @@ export const getGradeService = async (studentID: string,titleLooking:string) => 
         throw err
     }
 };
+
+export const getClassId = async (id:string) => {
+    return await classModel.findById(id)
+}
 
 
