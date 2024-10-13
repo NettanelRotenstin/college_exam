@@ -1,15 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+export default interface createPersonDTO{
+    user_name:string
+    password:string
+}
 
-
-const DTOPrfl = new Schema<DTOProfile>({
-    bio: {
-        type: String,
-        default: ''
-    },
-    socialLinks: {
-        type: [String],
-        default: []
-    }
-});
-
-export default DTOPrfl
+ 
