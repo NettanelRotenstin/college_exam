@@ -48,7 +48,7 @@ studentRouter.post("/createstudent", createStudent)
  *         description: Internal server error
  */
 
-studentRouter.delete("/logout", getGrade)
+studentRouter.get("/getgrade/:title", getGrade)
 
 
 

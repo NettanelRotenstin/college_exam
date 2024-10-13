@@ -29,7 +29,7 @@ export const loginServise = async (person: createPersonDTO) => {
             throw new Error("wrong password");
         }
 
-        const token = await jwt.sign({ role: dbUser.role, id: dbUser._id, }, process.env.TOKEN_SECRET as string);
+        const token = await jwt.sign({ role: dbUser.role, id: dbUser._id }, process.env.TOKEN_SECRET as string);
 
         return token;
 

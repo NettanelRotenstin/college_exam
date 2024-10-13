@@ -43,5 +43,5 @@ studentRouter.post("/createstudent", studentController_1.createStudent);
  *       '500':
  *         description: Internal server error
  */
-studentRouter.delete("/logout", studentController_1.getGrade);
+studentRouter.get("/getgrade/:title", studentController_1.getGrade);
 exports.default = studentRouter;

@@ -4,7 +4,6 @@ import { addGradeService, avarageGradesService, createTeacherService, gradesOfAl
 import classModel from "../models/classModel";
 
 export const createTeacher = async (req: Request, res: Response): Promise<void> => {
-    console.log(`hh`)
     try {
         const teacher = await createTeacherService(req.body)
         res.status(201).json({

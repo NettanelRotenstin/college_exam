@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.avarageOfStudentsGrade = exports.updateGrade = exports.gradesOfAllStudents = exports.addGrade = exports.createTeacher = void 0;
 const teacherService_1 = require("../services/teacherService");
 const createTeacher = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`hh`);
     try {
         const teacher = yield (0, teacherService_1.createTeacherService)(req.body);
         res.status(201).json({

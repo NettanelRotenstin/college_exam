@@ -1,42 +1,46 @@
-// import { NextFunction, Request } from "express";
-// import jwt from "jsonwebtoken"
+import { NextFunction, Request, Response } from "express";
+import jwt, { JwtPayload } from "jsonwebtoken"
+import roleEnum from "../types/roleEnum";
+import payLoadDTO from "../DTOs/payLoadDTO";
 
-// const onlyTeachers = async (req:Request, res:Response, next:NextFunction) => {
-//   try {
+export const onlyTeachers = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+
+    const token = req.cookies.token;
+
+    const userData = await jwt.verify(token, process.env.SECRET_TOKEN as string) as payLoadDTO
+
+    if (userData.role.toString() != roleEnum[1]) {
+
+      res.status(403).send("you are not a teacher")
+
+    }
+
+    next();
+  } catch (err) {
+
+    res.status(401).json({ err });
+  }
+};
+
+export const student = async (req: Request, res: Response, next:NextFunction) => {
+  try {
      
-//     const token = req.cookies.token;
+    const token = req.cookies.token;
+   
+    const userData = await jwt.verify(token, process.env.TOKEN_SECRET as string) as payLoadDTO
      
-//     const userData = await jwt.verify(token, process.env.SECRET_TOKEN);
-//     if (userData.role !== "commander") {
-//       res.status(403).send("shtzchhhhhhhh....")
-//     }
-//     // add the user to the req object
-//     req.user = userData;
-//     // call next
-//     next();
-//   } catch (err) {
-//     console.log(err);
-//     res.status(401).send(err.message);
-//   }
-// };
+    if (userData.id) {
 
-// const onlySoldiersAndCommanders = async (req, res, next) => {
-//   try {
-//     // get the token from cookie
-//     const token = req.cookies.token;
-//     // verify
-//     const userData = await jwt.verify(token, process.env.TOKEN_SECRET);
-//     // add the user to the req object
-//     req.user = userData;
-//     // call next
-//     next();
-//   } catch (err) {
-//     console.log(err);
-//     res.status(401).send(err.message);
-//   }
-// };
+      res.status(403).send("you are not a student")
 
-// module.exports = {
-//   onlyCommanders,
-//   onlySoldiersAndCommanders,
-// };
+    }
+   
+    next();
+
+  } catch (err) {
+    res.status(401).json({err});
+  }
+};
+
+

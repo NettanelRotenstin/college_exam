@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const teacherController_1 = require("../controllers/teacherController");
+const authMw_1 = require("../middleWares/authMw");
 const teacherRouter = require("express").Router();
 /**
  * @swagger
@@ -43,7 +44,7 @@ teacherRouter.post("/createteacher", teacherController_1.createTeacher);
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.post("/addgrade/:studentID", teacherController_1.addGrade);
+teacherRouter.post("/addgrade/:studentID", authMw_1.onlyTeachers, teacherController_1.addGrade);
 /**
  * @swagger
  * /getstudentsandgrades:
@@ -64,7 +65,7 @@ teacherRouter.post("/addgrade/:studentID", teacherController_1.addGrade);
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.get("/getstudentsandgrades", teacherController_1.gradesOfAllStudents);
+teacherRouter.get("/getstudentsandgrades", authMw_1.onlyTeachers, teacherController_1.gradesOfAllStudents);
 /**
  * @swagger
  * /updategrade/:studentID/:gradeID:
@@ -85,7 +86,7 @@ teacherRouter.get("/getstudentsandgrades", teacherController_1.gradesOfAllStuden
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.patch("/updategrade/:studentID/:gradetitle", teacherController_1.updateGrade);
+teacherRouter.patch("/updategrade/:studentID/:gradetitle", authMw_1.onlyTeachers, teacherController_1.updateGrade);
 /**
  * @swagger
  * /avarage:
@@ -106,5 +107,5 @@ teacherRouter.patch("/updategrade/:studentID/:gradetitle", teacherController_1.u
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.get("/avarage", teacherController_1.avarageOfStudentsGrade);
+teacherRouter.get("/avarage", authMw_1.onlyTeachers, teacherController_1.avarageOfStudentsGrade);
 exports.default = teacherRouter;

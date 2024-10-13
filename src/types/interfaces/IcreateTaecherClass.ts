@@ -1,9 +1,11 @@
 import mongoose, { Mongoose } from "mongoose"
 import roleEnum from "../roleEnum"
 import IcreateStudents from "./IcreateStudent"
+import { JwtPayload } from "jsonwebtoken"
+import payLoadDTO from "../../DTOs/payLoadDTO"
 
 export default interface IcreateTeacherClass {
-    role:string | roleEnum
+    role:string | roleEnum | payLoadDTO
     teacherName: string
     email: string
     password: string

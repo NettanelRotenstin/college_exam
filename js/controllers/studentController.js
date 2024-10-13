@@ -10,17 +10,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGrade = exports.createStudent = void 0;
+const studentService_1 = require("../services/studentService");
 const createStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const student = yield (0, studentService_1.createStudentService)(req.body);
+        res.status(201).json({
+            msg: 'student created!',
+            student
+        });
     }
     catch (error) {
+        res.status(404).json({
+            msg: 'bed request'
+        });
     }
 });
 exports.createStudent = createStudent;
 const getGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const exam = yield (0, studentService_1.getGradeService)(req.cookies.id, req.params.titleLooking);
+        res.status(200).json({
+            exam
+        });
     }
     catch (error) {
+        res.status(404).json({ msg: 'bed request' });
     }
 });
 exports.getGrade = getGrade;
