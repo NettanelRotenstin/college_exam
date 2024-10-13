@@ -1,8 +1,11 @@
 import { Router } from "express";
-const router = require("express").Router();
-const { login, logout } = require("../controllers/authController");
+import login from "../controllers/authController";
 
-const authRouter = Router()
+
+const authRouter = require("express").Router();
+ 
+
+ 
 
 /**
  * @swagger
@@ -24,6 +27,6 @@ const authRouter = Router()
  *       '500':
  *         description: Internal server error
  */
-router.post("/login", login);
+authRouter.post("/login", login);
 
-export default authRouter;
+export default authRouter

@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { addGrade, avarageOfStudentsGrade, createTeacher, gradesOfAllStudents, updateGrade } from "../controllers/teacherController";
 
-const router = require("express").Router();
+const teacherRouter = require("express").Router();
 
-const teacherRouter = Router()
 
 /**
  * @swagger
@@ -25,7 +24,7 @@ const teacherRouter = Router()
  *       '500':
  *         description: Internal server error
  */
-router.post("/createstudent", createTeacher)
+teacherRouter.post("/createteacher", createTeacher)
 
 /**
  * @swagger
@@ -48,7 +47,7 @@ router.post("/createstudent", createTeacher)
  *         description: Internal server error
  */
 
-router.post("/addgrade/:studentID", addGrade)
+teacherRouter.post("/addgrade/:studentID", addGrade)
 
 
 /**
@@ -72,7 +71,7 @@ router.post("/addgrade/:studentID", addGrade)
  *         description: Internal server error
  */
 
-router.get("/getstudentsandgrades", gradesOfAllStudents)
+teacherRouter.get("/getstudentsandgrades", gradesOfAllStudents)
 
 /**
  * @swagger
@@ -95,7 +94,7 @@ router.get("/getstudentsandgrades", gradesOfAllStudents)
  *         description: Internal server error
  */
 
-router.patch("/updategrade/:studentID/:gradeID", updateGrade)
+teacherRouter.patch("/updategrade/:studentID/:gradeID", updateGrade)
 
 /**
  * @swagger
@@ -118,6 +117,6 @@ router.patch("/updategrade/:studentID/:gradeID", updateGrade)
  *         description: Internal server error
  */
 
-router.get("/avarage", avarageOfStudentsGrade)
+teacherRouter.get("/avarage", avarageOfStudentsGrade)
 
 export default teacherRouter

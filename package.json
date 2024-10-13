@@ -1,9 +1,9 @@
 {
   "name": "college_exam",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "js/app.js",
   "scripts": {
-    "start": "nodemon dist/app"
+    "start": "nodemon app"
   },
   "author": "",
   "license": "ISC",

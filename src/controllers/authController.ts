@@ -16,6 +16,4 @@ const login = async (req: Request, res: Response) => {
 
  
 
-module.exports = {
-  login
-};
+export default login

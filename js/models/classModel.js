@@ -48,6 +48,10 @@ const classSchema = new mongoose_1.Schema({
     nameOfClass: {
         type: String,
         unique: true
+    },
+    students: {
+        type: [mongoose_1.default.Types.ObjectId],
+        default: []
     }
 });
 exports.default = mongoose_1.default.model("class", classSchema);

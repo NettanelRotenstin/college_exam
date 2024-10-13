@@ -22,6 +22,4 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).send('token is faild');
     }
 });
-module.exports = {
-    login
-};
+exports.default = login;

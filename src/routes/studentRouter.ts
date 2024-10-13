@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { createStudent, getGrade } from "../controllers/studentController";
-const router = require("express").Router();
 
-const studentRouter = Router()
+
+
+const studentRouter = require("express").Router();
 
 /**
  * @swagger
@@ -24,7 +25,7 @@ const studentRouter = Router()
  *       '500':
  *         description: Internal server error
  */
-router.post("/createstudent", createStudent)
+studentRouter.post("/createstudent", createStudent)
 
 /**
  * @swagger
@@ -47,7 +48,7 @@ router.post("/createstudent", createStudent)
  *         description: Internal server error
  */
 
-router.delete("/logout", getGrade)
+studentRouter.delete("/logout", getGrade)
 
 
 

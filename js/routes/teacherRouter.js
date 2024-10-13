@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
 const teacherController_1 = require("../controllers/teacherController");
-const router = require("express").Router();
-const teacherRouter = (0, express_1.Router)();
+const teacherRouter = require("express").Router();
 /**
  * @swagger
  * /createteacher:
@@ -24,7 +22,7 @@ const teacherRouter = (0, express_1.Router)();
  *       '500':
  *         description: Internal server error
  */
-router.post("/createstudent", teacherController_1.createTeacher);
+teacherRouter.post("/createteacher", teacherController_1.createTeacher);
 /**
  * @swagger
  * /add grade/:studentID:
@@ -45,7 +43,7 @@ router.post("/createstudent", teacherController_1.createTeacher);
  *       '500':
  *         description: Internal server error
  */
-router.post("/addgrade/:studentID", teacherController_1.addGrade);
+teacherRouter.post("/addgrade/:studentID", teacherController_1.addGrade);
 /**
  * @swagger
  * /getstudentsandgrades:
@@ -66,7 +64,7 @@ router.post("/addgrade/:studentID", teacherController_1.addGrade);
  *       '500':
  *         description: Internal server error
  */
-router.get("/getstudentsandgrades", teacherController_1.gradesOfAllStudents);
+teacherRouter.get("/getstudentsandgrades", teacherController_1.gradesOfAllStudents);
 /**
  * @swagger
  * /updategrade/:studentID/:gradeID:
@@ -87,7 +85,7 @@ router.get("/getstudentsandgrades", teacherController_1.gradesOfAllStudents);
  *       '500':
  *         description: Internal server error
  */
-router.patch("/updategrade/:studentID/:gradeID", teacherController_1.updateGrade);
+teacherRouter.patch("/updategrade/:studentID/:gradeID", teacherController_1.updateGrade);
 /**
  * @swagger
  * /avarage:
@@ -108,5 +106,5 @@ router.patch("/updategrade/:studentID/:gradeID", teacherController_1.updateGrade
  *       '500':
  *         description: Internal server error
  */
-router.get("/avarage", teacherController_1.avarageOfStudentsGrade);
+teacherRouter.get("/avarage", teacherController_1.avarageOfStudentsGrade);
 exports.default = teacherRouter;

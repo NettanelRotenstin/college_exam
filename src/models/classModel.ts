@@ -3,9 +3,9 @@ import IcreateTeacherClass from '../types/interfaces/IcreateTaecherClass'
 import roleEnum from '../types/roleEnum';
 
 const classSchema = new Schema<IcreateTeacherClass>({
-  role:{
-    type:String,
-    enum:roleEnum
+  role: {
+    type: String,
+    enum: roleEnum
   },
   teacherName: {
     type: String,
@@ -22,6 +22,10 @@ const classSchema = new Schema<IcreateTeacherClass>({
   nameOfClass: {
     type: String,
     unique: true
+  },
+  students: {
+    type: [mongoose.Types.ObjectId],
+    default:[]
   }
 });
 

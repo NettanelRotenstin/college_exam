@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
 const studentController_1 = require("../controllers/studentController");
-const router = require("express").Router();
-const studentRouter = (0, express_1.Router)();
+const studentRouter = require("express").Router();
 /**
  * @swagger
  * /createstudent:
@@ -24,7 +22,7 @@ const studentRouter = (0, express_1.Router)();
  *       '500':
  *         description: Internal server error
  */
-router.post("/createstudent", studentController_1.createStudent);
+studentRouter.post("/createstudent", studentController_1.createStudent);
 /**
  * @swagger
  * /getgrade/:examID:
@@ -45,5 +43,5 @@ router.post("/createstudent", studentController_1.createStudent);
  *       '500':
  *         description: Internal server error
  */
-router.delete("/logout", studentController_1.getGrade);
+studentRouter.delete("/logout", studentController_1.getGrade);
 exports.default = studentRouter;
