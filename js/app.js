@@ -7,19 +7,22 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const DB_1 = __importDefault(require("./config/DB"));
+const swagger_express_1 = require("./config/swagger-express");
+const authRouter_1 = __importDefault(require("./routes/authRouter"));
+const teacherRouter_1 = __importDefault(require("./routes/teacherRouter"));
+const studentRouter_1 = __importDefault(require("./routes/studentRouter"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.use(express_1.default.json());
-connectDB();
+(0, DB_1.default)();
 app.use((0, cookie_parser_1.default)());
-app.use('/swagger', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(specs));
+app.use('/swagger', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_express_1.specs));
 // Routes
-app.use("/auth", authRouter);
-app.use("/api/posts", postRouter);
-app.use("/api/users", userRouter);
-// Error handling middleware
-app.use(errorHandler);
+app.use("/auth", authRouter_1.default);
+app.use("/teacher", teacherRouter_1.default);
+app.use("/student", studentRouter_1.default);
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
