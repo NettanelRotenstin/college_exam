@@ -39,6 +39,9 @@ const studentSchema = new mongoose_1.Schema({
         type: String,
         default: ''
     },
+    classID: {
+        type: mongoose_1.default.Schema.Types.ObjectId
+    },
     email: {
         type: String,
         default: ``

@@ -14,6 +14,9 @@ const studentSchema = new Schema<IcreateStudent>({
         type: String,
         default: ''
     },
+    classID:{
+        type:mongoose.Schema.Types.ObjectId
+    },
     email: {
         type: String,
         default: ``

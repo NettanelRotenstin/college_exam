@@ -47,12 +47,7 @@ const addGradeService = (grade, studentId, teacherID) => __awaiter(void 0, void 
 exports.addGradeService = addGradeService;
 const gradesOfAllStudentsService = (nameOfClass) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allStudents = yield classModel_1.default.find({ nameOfClass }, { students: 1, _id: 0 });
-        let result = [];
-        for (let i = 0; i < allStudents.length; i++) {
-            result += yield studentModel_1.default.find({ _id: allStudents[i]._id }, { name: 1, grades: 1 });
-        }
-        return result;
+        const teacherClass = yield classModel_1.default.findOne({});
     }
     catch (error) {
         throw new Error('cant return the');

@@ -6,7 +6,7 @@ const gradeSchema = new Schema<IGrade>({
         type: String,
         default: ''
     },
-    grade: {
+    score: {
         type: Number
     }
 });

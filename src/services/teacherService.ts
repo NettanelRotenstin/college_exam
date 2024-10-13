@@ -50,16 +50,7 @@ export const addGradeService = async (grade: IGrade, studentId: string, teacherI
 
 export const gradesOfAllStudentsService = async (nameOfClass: string) => {
   try {
-    const allStudents = await classModel.find({ nameOfClass }, { students: 1, _id: 0 })
-
-    let result: any = []
-
-    for (let i = 0; i < allStudents.length; i++) {
-
-      result += await studentModel.find({ _id: allStudents[i]._id }, { name: 1, grades: 1 })
-    }
-    return result
-
+     const teacherClass = await classModel.findOne({})
   } catch (error) {
 
     throw new Error('cant return the')

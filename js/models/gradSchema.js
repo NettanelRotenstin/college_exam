@@ -6,7 +6,7 @@ const gradeSchema = new mongoose_1.Schema({
         type: String,
         default: ''
     },
-    grade: {
+    score: {
         type: Number
     }
 });
