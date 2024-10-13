@@ -41,8 +41,42 @@ export const addGradeService = async (grade: IGrade, studentId: string, teacherI
     return await studentModel.findById(studentId)
 
   } catch {
-    
+
     throw new Error('cant find student or teacher')
-  
+
+  }
+}
+
+
+export const gradesOfAllStudentsService = async (nameOfClass: string) => {
+  try {
+    const allStudents = await classModel.find({ nameOfClass }, { students: 1, _id: 0 })
+
+    let result: any = []
+
+    for (let i = 0; i < allStudents.length; i++) {
+
+      result += await studentModel.find({ _id: allStudents[i]._id }, { name: 1, grades: 1 })
+    }
+    return result
+
+  } catch (error) {
+
+    throw new Error('cant return the')
+
+  }
+}
+
+export const updateGradeService = async (nameOfClass: string,grade:IGrade,studentID:string) => {
+  try {
+    const teacher = await classModel.findOne({nameOfClass,students:studentID})
+    
+    if(!teacher) throw new Error('tou arent his teacher')
+    
+    await studentModel.findOneAndUpdate({_id:studentID},{$match:{title:grade.title}})
+  } catch (error) {
+
+    throw new Error('cant return the')
+
   }
 }

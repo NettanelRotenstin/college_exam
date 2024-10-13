@@ -85,7 +85,7 @@ teacherRouter.get("/getstudentsandgrades", teacherController_1.gradesOfAllStuden
  *       '500':
  *         description: Internal server error
  */
-teacherRouter.patch("/updategrade/:studentID/:gradeID", teacherController_1.updateGrade);
+teacherRouter.patch("/updategrade/:studentID/:gradetitle", teacherController_1.updateGrade);
 /**
  * @swagger
  * /avarage:

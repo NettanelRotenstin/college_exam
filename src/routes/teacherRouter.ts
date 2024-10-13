@@ -94,7 +94,7 @@ teacherRouter.get("/getstudentsandgrades", gradesOfAllStudents)
  *         description: Internal server error
  */
 
-teacherRouter.patch("/updategrade/:studentID/:gradeID", updateGrade)
+teacherRouter.patch("/updategrade/:studentID/:gradetitle", updateGrade)
 
 /**
  * @swagger

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import { addGradeService, createTeacherService } from "../services/teacherService";
+import { addGradeService, createTeacherService, gradesOfAllStudentsService } from "../services/teacherService";
 import classModel from "../models/classModel";
 
 export const createTeacher = async (req: Request, res: Response): Promise<void> => {
@@ -32,15 +32,20 @@ export const addGrade = async (req: Request, res: Response): Promise<void> => {
 
 export const gradesOfAllStudents = async (req: Request, res: Response,): Promise<void> => {
     try {
-
+        const allGrades = await gradesOfAllStudentsService(req.cookies.nameOfClass)
+        res.status(200).json({
+            allGrades
+        })
     } catch (error) {
-
+        res.status(404).json({
+            msg:'request faild'
+        })
     }
 };
 
 export const updateGrade = async (req: Request, res: Response,): Promise<void> => {
     try {
-
+        
     } catch (error) {
 
     }

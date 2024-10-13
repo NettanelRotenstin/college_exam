@@ -42,8 +42,15 @@ const addGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.addGrade = addGrade;
 const gradesOfAllStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const allGrades = yield (0, teacherService_1.gradesOfAllStudentsService)(req.cookies.nameOfClass);
+        res.status(200).json({
+            allGrades
+        });
     }
     catch (error) {
+        res.status(404).json({
+            msg: 'request faild'
+        });
     }
 });
 exports.gradesOfAllStudents = gradesOfAllStudents;
