@@ -29,8 +29,14 @@ const createTeacher = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createTeacher = createTeacher;
 const addGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const student = yield (0, teacherService_1.addGradeService)(req.body.grade, req.params.studentID, req.cookies.role);
+        res.status(200).json({
+            msg: 'grade addad',
+            student
+        });
     }
     catch (error) {
+        res.status(404).json({ msg: 'request faild' });
     }
 });
 exports.addGrade = addGrade;

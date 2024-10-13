@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTeacherService = void 0;
+exports.addGradeService = exports.createTeacherService = void 0;
 const classModel_1 = __importDefault(require("../models/classModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const studentModel_1 = __importDefault(require("../models/studentModel"));
 const createTeacherService = (teacher) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, teacherName, email, password, nameOfClass } = teacher;
@@ -31,3 +32,16 @@ const createTeacherService = (teacher) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.createTeacherService = createTeacherService;
+const addGradeService = (grade, studentId, teacherID) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const teacher = yield classModel_1.default.findOne({ _id: teacherID }, { students: { _id: studentId } });
+        if (!teacher)
+            throw new Error('you dont have an access!');
+        yield studentModel_1.default.findByIdAndUpdate(studentId, { grades: { $push: grade } });
+        return yield studentModel_1.default.findById(studentId);
+    }
+    catch (_a) {
+        throw new Error('cant find student or teacher');
+    }
+});
+exports.addGradeService = addGradeService;

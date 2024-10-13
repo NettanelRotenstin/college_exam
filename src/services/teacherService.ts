@@ -1,6 +1,10 @@
+import mongoose from "mongoose";
 import classModel from "../models/classModel";
+import IGrade from "../types/interfaces/Grade";
 import IcreateTeacherClass from "../types/interfaces/IcreateTaecherClass";
 import bcrypt from 'bcrypt'
+import studentModel from "../models/studentModel";
+import IcreateStudents from "../types/interfaces/IcreateStudent";
 
 
 export const createTeacherService = async (teacher: IcreateTeacherClass) => {
@@ -24,3 +28,21 @@ export const createTeacherService = async (teacher: IcreateTeacherClass) => {
     throw err
   }
 };
+
+
+export const addGradeService = async (grade: IGrade, studentId: string, teacherID: mongoose.Types.ObjectId) => {
+  try {
+    const teacher = await classModel.findOne({ _id: teacherID }, { students: { _id: studentId } })
+
+    if (!teacher) throw new Error('you dont have an access!')
+
+    await studentModel.findByIdAndUpdate(studentId, { grades: { $push: grade } })
+
+    return await studentModel.findById(studentId)
+
+  } catch {
+    
+    throw new Error('cant find student or teacher')
+  
+  }
+}

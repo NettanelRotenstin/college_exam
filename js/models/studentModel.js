@@ -52,7 +52,8 @@ const studentSchema = new mongoose_1.Schema({
         enum: []
     },
     grades: {
-        type: [gradSchema_1.default]
+        type: [gradSchema_1.default],
+        default: []
     }
 });
 exports.default = mongoose_1.default.model("Student", studentSchema);

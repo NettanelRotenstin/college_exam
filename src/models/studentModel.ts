@@ -27,7 +27,8 @@ const studentSchema = new Schema<IcreateStudent>({
         enum: []
     },
     grades: {
-        type: [gradeSchema]
+        type: [gradeSchema],
+        default:[]
     }
 });
 
