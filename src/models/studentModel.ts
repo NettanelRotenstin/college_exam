@@ -1,22 +1,27 @@
 import IcreateStudent from '../types/interfaces/IcreateStudent'
 import mongoose, { Schema } from 'mongoose';
+import IGrade from '../types/interfaces/Grade';
+import gradeSchema from './gradSchema';
 
 const studentSchema = new Schema<IcreateStudent>({
-    name:{
-      type:String,
-      default:''
+    name: {
+        type: String,
+        default: ''
     },
-    email:{
-      type:String,
-      default:``
+    email: {
+        type: String,
+        default: ``
     },
-    password:{
-      type:String,
-      required:[true,'password is missing!']
+    password: {
+        type: String,
+        required: [true, 'password is missing!']
     },
-    nameOfClass:{
-      type: String,
-      enum:[]
+    nameOfClass: {
+        type: String,
+        enum: []
+    },
+    grades: {
+        type: [gradeSchema]
     }
 });
 
