@@ -1,7 +1,7 @@
-import IcreateStudent from '../types/interfaces/IcreateStudent'
 import mongoose, { Schema } from 'mongoose';
+import IcreateTeacherClass from '../types/interfaces/IcreateTeacherClass'
 
-const studentSchema = new Schema<IcreateStudent>({
+const classSchema = new Schema<IcreateTeacherClass>({
     name:{
       type:String,
       default:''
@@ -16,8 +16,8 @@ const studentSchema = new Schema<IcreateStudent>({
     },
     nameOfClass:{
       type: String,
-      enum:[]
+      unique:true
     }
 });
 
-export default mongoose.model<IcreateStudent>("Student", studentSchema);
+export default mongoose.model<IcreateTeacherClass>("class", classSchema);

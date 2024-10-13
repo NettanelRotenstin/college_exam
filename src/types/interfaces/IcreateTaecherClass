@@ -1,4 +1,4 @@
-export default interface IcreateTeacher {
+export default interface IcreateTeacherClass {
     name: string
     email: string
     password: string
