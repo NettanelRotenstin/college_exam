@@ -13,12 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getClassId = exports.getGradeService = exports.createStudentService = void 0;
+const checkingClassName_1 = __importDefault(require("../middleWares/checkingClassName"));
 const classModel_1 = __importDefault(require("../models/classModel"));
 const studentModel_1 = __importDefault(require("../models/studentModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createStudentService = (student) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { role, name, email, password, nameOfClass } = student;
+        yield (0, checkingClassName_1.default)(nameOfClass);
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         const dbStudent = new studentModel_1.default({
             role, name, email, password: hashedPassword, nameOfClass

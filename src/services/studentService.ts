@@ -1,3 +1,4 @@
+import selectedClass from "../middleWares/checkingClassName";
 import classModel from "../models/classModel";
 import studentModel from "../models/studentModel";
 import IcreateStudents from "../types/interfaces/IcreateStudent";
@@ -6,6 +7,8 @@ import bcrypt from 'bcrypt'
 export const createStudentService = async (student: IcreateStudents) => {
     try {
         const { role, name, email, password, nameOfClass } = student;
+
+        await selectedClass(nameOfClass)
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
