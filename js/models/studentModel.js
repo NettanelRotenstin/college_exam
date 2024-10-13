@@ -28,7 +28,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const gradSchema_1 = __importDefault(require("./gradSchema"));
+const roleEnum_1 = __importDefault(require("../types/roleEnum"));
 const studentSchema = new mongoose_1.Schema({
+    role: {
+        type: String,
+        enum: roleEnum_1.default
+    },
     name: {
         type: String,
         default: ''

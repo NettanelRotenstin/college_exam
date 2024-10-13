@@ -22,9 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+const roleEnum_1 = __importDefault(require("../types/roleEnum"));
 const classSchema = new mongoose_1.Schema({
+    role: {
+        type: String,
+        enum: roleEnum_1.default
+    },
     teacherName: {
         type: String,
         default: ''
