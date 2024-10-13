@@ -1,8 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
-import IcreateTeacherClass from '../types/interfaces/IcreateTeacherClass'
+import IcreateTeacherClass from '../types/interfaces/IcreateTaecherClass'
 
 const classSchema = new Schema<IcreateTeacherClass>({
-  name: {
+  teacherName: {
     type: String,
     default: ''
   },

@@ -1,5 +1,5 @@
 export default interface IcreateTeacherClass {
-    name: string
+    teacherName: string
     email: string
     password: string
     nameOfClass: string

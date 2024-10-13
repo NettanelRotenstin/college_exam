@@ -1,10 +1,12 @@
 import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
+import createPersonDTO from '../DTOs/CreatePersonDTO';
+import classModel from '../models/classModel';
 
 
-export const loginServise = async (user: User) => {
+export const loginServise = async (person: createPersonDTO) => {
     try {
-        const dbUser = await userModel.findOne({ username: user.username });
+        const dbUser = await classModel.findOne({ name: person.user_name });
 
         if (!dbUser) throw new Error("user not found");
 
