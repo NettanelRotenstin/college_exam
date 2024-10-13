@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const authService_1 = require("../services/authService");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = yield loginServise(req.body);
+        const token = yield (0, authService_1.loginServise)(req.body);
         res.cookie("token", token);
         res.json({
             msg: `welcome ${req.body.name}! so good to see you again!!`,

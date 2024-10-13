@@ -7,7 +7,8 @@ import roleEnum from '../types/roleEnum';
 const studentSchema = new Schema<IcreateStudent>({
     role:{
         type:String,
-        enum:roleEnum
+        enum:roleEnum,
+        required:[true,`role is necessary!`]
       },
     name: {
         type: String,

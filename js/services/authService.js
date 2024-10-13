@@ -30,11 +30,10 @@ const loginServise = (person) => __awaiter(void 0, void 0, void 0, function* () 
         if (!(yield bcrypt_1.default.compare(userPass, dbUserPass))) {
             throw new Error("wrong password");
         }
-        const token = yield jsonwebtoken_1.default.sign({ user_name: dbUser.username, email: dbUser.email, id: dbUser._id }, process.env.TOKEN_SECRET);
+        const token = yield jsonwebtoken_1.default.sign({ role: dbUser.role, id: dbUser._id }, process.env.TOKEN_SECRET);
         return token;
     }
     catch (err) {
-        console.log(err);
         throw err;
     }
 });

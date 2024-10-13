@@ -32,7 +32,8 @@ const roleEnum_1 = __importDefault(require("../types/roleEnum"));
 const studentSchema = new mongoose_1.Schema({
     role: {
         type: String,
-        enum: roleEnum_1.default
+        enum: roleEnum_1.default,
+        required: [true, `role is necessary!`]
     },
     name: {
         type: String,
