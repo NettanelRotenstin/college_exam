@@ -56,15 +56,27 @@ const gradesOfAllStudents = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.gradesOfAllStudents = gradesOfAllStudents;
 const updateGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        yield (0, teacherService_1.updateGradeService)(req.cookies.nameOfClass, req.body, req.params.studentID);
+        res.status(200).json({
+            msg: 'success changed!'
+        });
     }
     catch (error) {
+        res.status(404).json({
+            msg: 'request faild'
+        });
     }
 });
 exports.updateGrade = updateGrade;
 const avarageOfStudentsGrade = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const avarage = yield (0, teacherService_1.avarageGradesService)(req.cookies.nameOfClass, req.cookies.id);
+        res.status(200).json({
+            avarage
+        });
     }
     catch (error) {
+        res.status(404).json({ msg: 'request faild' });
     }
 });
 exports.avarageOfStudentsGrade = avarageOfStudentsGrade;

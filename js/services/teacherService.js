@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateGradeService = exports.gradesOfAllStudentsService = exports.addGradeService = exports.createTeacherService = void 0;
+exports.avarageGradesService = exports.updateGradeService = exports.gradesOfAllStudentsService = exports.addGradeService = exports.createTeacherService = void 0;
 const classModel_1 = __importDefault(require("../models/classModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const studentModel_1 = __importDefault(require("../models/studentModel"));
@@ -61,13 +61,26 @@ const gradesOfAllStudentsService = (nameOfClass) => __awaiter(void 0, void 0, vo
 exports.gradesOfAllStudentsService = gradesOfAllStudentsService;
 const updateGradeService = (nameOfClass, grade, studentID) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const teacher = yield classModel_1.default.findOne({ nameOfClass, students: studentID });
+        const teacher = yield classModel_1.default.findOne({ nameOfClass, students: { _id: studentID } });
         if (!teacher)
             throw new Error('tou arent his teacher');
-        yield studentModel_1.default.findOneAndUpdate({ _id: studentID }, { $match: { title: grade.title } });
+        yield studentModel_1.default.aggregate([{ $set: { $match: { _id: studentID } } }]);
     }
     catch (error) {
         throw new Error('cant return the');
     }
 });
 exports.updateGradeService = updateGradeService;
+const avarageGradesService = (nameOfClass, teacherID) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const teacher = yield classModel_1.default.find({ nameOfClass, _id: teacherID }, { students: 1 });
+        if (!teacher)
+            throw new Error('you arent teacher of this class!');
+        const grades = yield (0, exports.gradesOfAllStudentsService)(nameOfClass);
+        return grades / grades.length;
+    }
+    catch (error) {
+        throw new Error('cant return the');
+    }
+});
+exports.avarageGradesService = avarageGradesService;
