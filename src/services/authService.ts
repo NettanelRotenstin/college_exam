@@ -34,7 +34,7 @@ export const loginServise = async (person: createPersonDTO) => {
         return token;
 
     } catch (err) {
-       
+
         throw err;
     }
 };

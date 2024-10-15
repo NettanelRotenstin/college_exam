@@ -19,7 +19,7 @@ export const createTeacher = async (req: Request, res: Response): Promise<void> 
 
 export const addGrade = async (req: Request, res: Response): Promise<void> => {
     try {
-        const student = await addGradeService(req.body.grade, req.params.studentID, req.cookies.role)
+        const student = await addGradeService(req.body.grade, req.params.studentID, req.cookies.id)
         res.status(200).json({
             msg: 'grade addad',
             student

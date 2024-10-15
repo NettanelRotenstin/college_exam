@@ -6,7 +6,7 @@ import mongoose from "mongoose"
 
 export default interface IcreateStudents extends Document {
     role:string | roleEnum | payLoadDTO
-    classID:mongoose.Types.ObjectId
+    classID?:mongoose.Types.ObjectId
     name: string
     email: string
     password: string

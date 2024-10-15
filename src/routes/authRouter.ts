@@ -17,7 +17,7 @@ const authRouter = require("express").Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/src/routes/authRoutes'
+ *             $ref: '#/src/routes/authRouter'
  *      
  *     responses:
  *       '201':

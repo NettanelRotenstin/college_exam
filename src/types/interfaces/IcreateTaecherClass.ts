@@ -10,6 +10,6 @@ export default interface IcreateTeacherClass extends Document{
     email: string
     password: string
     nameOfClass: string
-    students:[mongoose.Types.ObjectId]
+    students?:[mongoose.Types.ObjectId]
 }
 

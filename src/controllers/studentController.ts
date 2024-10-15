@@ -19,9 +19,9 @@ export const createStudent = async (req: Request, res: Response,): Promise<void>
 
 export const getGrade = async (req: Request, res: Response,): Promise<void> => {
     try {
-        const exam = await getGradeService(req.cookies.id, req.params.titleLooking)
+        const grades = await getGradeService(req.cookies.id)
         res.status(200).json({
-            exam
+            grades
         })
     } catch (error) {
         res.status(404).json({ msg: 'bed request' })

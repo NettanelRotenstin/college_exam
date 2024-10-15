@@ -1,6 +1,7 @@
 import selectedClass from "../middleWares/checkingClassName";
 import classModel from "../models/classModel";
 import studentModel from "../models/studentModel";
+import IGrade from "../types/interfaces/Grade";
 import IcreateStudents from "../types/interfaces/IcreateStudent";
 import bcrypt from 'bcrypt'
 
@@ -28,9 +29,10 @@ export const createStudentService = async (student: IcreateStudents) => {
 };
 
 
-export const getGradeService = async (studentID: string,titleLooking:string) => {
+export const getGradeService = async (studentID: string) => {
     try {
-        const grade = await studentModel.aggregate([{$match:{_id:studentID}}])
+        const student = await studentModel.findById(studentID)
+        return student?.grades
     } catch (err) {
         throw err
     }
