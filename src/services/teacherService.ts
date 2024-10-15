@@ -50,7 +50,7 @@ export const addGradeService = async (grade: IGrade, studentId: string, teacherI
 
 export const gradesOfAllStudentsService = async (classID: string) => {
   try {
-    const teacherClass = await classModel.findById(classID,).populate('students')
+    const teacherClass = await classModel.findById(classID,).populate('students') 
     if (teacherClass) {
       return teacherClass
     }
